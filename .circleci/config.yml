@@ -10,4 +10,11 @@ jobs:
       - run:
           name: Build application Docker image
           command: |
-              docker build -t $IMAGENAME .
+              docker build -t $DOCKER_USER/$IMAGENAME .
+      - deploy:
+          name: Push application Docker image
+          command: |
+              if [ "${CIRCLE_BRANCH}" == "master" ]; then
+                docker login -u $DOCKER_USER -p $DOCKER_PASS
+                docker push $DOCKER_USER/$IMAGENAME
+              fi

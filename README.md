@@ -1,5 +1,7 @@
 # chainer-docker
 
+[![CircleCI](https://circleci.com/gh/k-fujikawa/chainer-docker.svg?style=svg)](https://circleci.com/gh/k-fujikawa/chainer-docker)
+
 chainer-docker is a template for a typical machine learning project using chainer, docker, and docker-compose.
 
 ## Requirement
