@@ -1,5 +1,4 @@
 version: 2
-
 jobs:
   build:
     machine: true
@@ -18,3 +17,19 @@ jobs:
                 docker login -u $DOCKER_USER -p $DOCKER_PASS
                 docker push $DOCKER_USER/$IMAGENAME
               fi
+
+workflows:
+  version: 2
+  commit-workflow:
+    jobs:
+      - build
+  scheduled-workflow:
+    triggers:
+      - schedule:
+          cron: "0 1 * * *" # UTC (am 10:00 JST every day)
+          filters:
+            branches:
+              only:
+                - master
+    jobs:
+      - build
