@@ -1,0 +1,13 @@
+version: 2
+
+jobs:
+  build:
+    machine: true
+    environment:
+      - IMAGENAME: chainer-docker
+    steps:
+      - checkout
+      - run:
+          name: Build application Docker image
+          command: |
+              docker build -t $IMAGENAME .
