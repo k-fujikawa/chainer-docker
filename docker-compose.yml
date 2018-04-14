@@ -1,0 +1,28 @@
+version: "2.3"
+services:
+  cpu: &default
+    user: $UID:$GID
+    image: $IMAGENAME
+    build:
+      context: .
+      args:
+        USE_GPU: 0
+    volumes:
+      - $PWD:/src
+    environment:
+      - HOME=/tmp
+  gpu:
+    <<: *default
+    runtime: nvidia
+    build:
+      context: .
+      args:
+        USE_GPU: 1
+  jupyter:
+    <<: *default
+    ports:
+      - "$PORT:$PORT"
+    command:
+      bash -c "
+      jupyter lab --ip 0.0.0.0 --allow-root --port $PORT
+      "

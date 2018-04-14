@@ -1,0 +1,5 @@
+chainer==3.4.0
+scikit-learn
+scipy
+pandas
+jupyterlab
