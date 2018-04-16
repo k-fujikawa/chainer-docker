@@ -34,12 +34,12 @@ ENV PATH $PYENV_ROOT/shims:$PYENV_ROOT/bin:$PATH
 RUN pyenv install $CONDA_VERSION
 RUN pyenv global $CONDA_VERSION
 RUN pyenv rehash
-RUN pip install -U pip
 
 # Create python enviromnents
 ADD environment.yml /src/environment.yml
 RUN conda env create -f /src/environment.yml
 RUN pyenv global $CONDA_VERSION/envs/default
+RUN pip install -U pip
 
 # Install python dependencies
 ADD requirements.txt /src/requirements.txt
@@ -50,7 +50,6 @@ RUN if [ $USE_GPU = 1 ] ; then \
 
 # Install src
 ADD . /src
-RUN pip install -e /src
 ENV CHAINER_SEED 0
 ENV CHAINER_DATASET_ROOT /src/data
 WORKDIR /src
