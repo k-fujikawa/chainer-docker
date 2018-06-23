@@ -2,4 +2,5 @@ chainer
 scikit-learn
 scipy
 pandas
+notebook==5.4.0
 jupyterlab
