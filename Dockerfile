@@ -46,7 +46,7 @@ ADD requirements.txt /src/requirements.txt
 RUN pip install -r /src/requirements.txt
 ARG USE_GPU=1
 RUN if [ $USE_GPU = 1 ] ; then \
-    pip install cupy==4.0.0 ; fi
+    pip install cupy ; fi
 
 # Install src
 ADD . /src
