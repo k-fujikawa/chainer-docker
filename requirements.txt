@@ -1,6 +1,6 @@
 chainer
+cupy-cuda90
 scikit-learn
 scipy
 pandas
-notebook==5.4.0
 jupyterlab
