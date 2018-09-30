@@ -1,6 +1,6 @@
 name: default
 dependencies:
-  - python=3.6.4
+  - python=3.6.6
   - numpy
   - cython
   - flake8
