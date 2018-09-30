@@ -1,25 +1,22 @@
 version: "2.3"
 services:
-  cpu: &default
+  base: &base
     user: $UID:$GID
     image: $IMAGENAME
-    build:
-      context: .
-      args:
-        USE_GPU: 0
+    network_mode: "bridge"
     volumes:
       - $PWD:/src
     environment:
       - HOME=/tmp
-  gpu:
-    <<: *default
-    runtime: nvidia
+  cpu:
+    <<: *base
     build:
       context: .
-      args:
-        USE_GPU: 1
+  gpu:
+    <<: *base
+    runtime: nvidia
   jupyter:
-    <<: *default
+    <<: *base
     ports:
       - "$PORT:$PORT"
     command:
